@@ -79,69 +79,33 @@ if (num_str == NULL)
 fprintf(stderr, "L%d: usage: push integer\n",
 line_num);
 free(string);
-
-																																																																						free_stack(&stack);
-
-																																																																										fclose(file);
-
-																																																																														exit(EXIT_FAILURE);
-
-																																																																																	}
-
-
-
-																																																								if (num_str[0] == '-' && num_str[1] != '\0')
-
-																																																													i = 1;
-
-																																																											/* Make sure string isn't garbage */
-
-																																																											for (; num_str[i] != '\0'; i++)
-
-																																																															{
-
-																																																																				if (isdigit(num_str[i]) == 0)
-
-																																																																									{
-
-																																																																															fprintf(stderr,
-
-																																																																																							"L%d: usage: push integer\n",
-
-																																																																																													line_num);
-
-																																																																																				free(string);
-
-																																																																																									free_stack(&stack);
-
-																																																																																														fclose(file);
-
-																																																																																																			exit(EXIT_FAILURE);
-
-																																																																																																							}
-
-																																																																							}
-
-
-
-																																																														token = atoi(num_str);
-
-																																																																}
-
-																																													op_func(opcode, &stack, line_num)(&stack, line_num);
-
-																																														}
-
-															/* Free memory and close the file */
-
-															free(string);
-
-																free_stack(&stack);
-
-																	fclose(file);
-
-
-
-																		return (0);
-
+free_stack(&stack);
+fclose(file);
+exit(EXIT_FAILURE);
+}
+if (num_str[0] == '-' && num_str[1] != '\0')
+i = 1;
+/* Make sure string isn't garbage */
+for (; num_str[i] != '\0'; i++)
+{
+if (isdigit(num_str[i]) == 0)
+{
+fprintf(stderr,
+"L%d: usage: push integer\n",
+line_num);
+free(string);
+free_stack(&stack);
+fclose(file);
+exit(EXIT_FAILURE);
+}
+}
+token = atoi(num_str);
+}
+op_func(opcode, &stack, line_num)(&stack, line_num);
+}
+/* Free memory and close the file */
+free(string);
+free_stack(&stack);
+fclose(file);
+return (0);
 }
